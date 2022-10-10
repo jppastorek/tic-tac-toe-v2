@@ -2,6 +2,8 @@
 
 const board = document.getElementById("boardContainer");
 const button = document.getElementById("restartButton");
+const cells = document.getElementsByClassName("cell");
+const xes = document.getElementsByClassName("x");
 
 
 //player objects
@@ -19,9 +21,10 @@ const gameBoard = {
         let index = 0;
         for (i = 0; i < 9; i++) {
             let div = document.createElement("div");
-            div.classList.add("cell", "empty");
-            div.setAttribute("data", index);
+            div.classList.add("empty");
+            // div.setAttribute("data", index);  do I even need this?
             board.appendChild(div);
+            this.boardList.push(div);
 
             //should this part be in the display controller?
             div.addEventListener("click", () => {
@@ -36,14 +39,28 @@ const gameBoard = {
                         player2.active = false;
                         player1.active = true;
                     }
+                    displayController.checkForWin;
                 }
             })
 
             index++;
         }
-    }
+    },
+    boardList: [], //not sure what to do with this. used to store the list of divs
+    winningCombos: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 8]
+    ]
 }
 
+
+//TODO update the current state of the board with new classes (x or o) or and/or use the data
 
 //display controller
 
