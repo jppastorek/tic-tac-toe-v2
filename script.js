@@ -93,7 +93,7 @@ const displayController = {
             //check the crosses
         } else if (cell0 === cell4 && cell4 === cell8 && cell0 != "empty") {
             console.log("win");
-        } else if (cell2 === cell4 && cell4 === cell8 && cell2 != "empty") {
+        } else if (cell2 === cell4 && cell4 === cell6 && cell2 != "empty") {
             console.log("win");
         }
 
