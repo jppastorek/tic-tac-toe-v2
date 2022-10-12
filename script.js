@@ -47,13 +47,23 @@ const gameBoard = {
         }
     },
     checkForDraw: function() {
-        //some code
+        let count = 0;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (this.board[i][j] === '') {
+                    count++;
+                }
+            }
+        }
+        if (count === 0) {
+            this.declareDraw();
+        }
     },
     declareWinner: function(mark) {
         displayController.showMessage(mark);
     },
-    declareDraw: function() {
-        console.log(`It's a draw.`);
+    declareDraw: function(winner) {
+        displayController.showMessage("no one");
     },
     updateBoard: function(cellNumber, mark) {
         if (cellNumber === "0") {
@@ -119,6 +129,7 @@ const displayController = {
                         gameBoard.updateBoard(div.getAttribute("data-cellNumber"), "o");
                     }
                     gameBoard.checkForWin();
+                    gameBoard.checkForDraw();
                 }
             })
 
