@@ -28,26 +28,35 @@ const gameBoard = {
         //check rows
         if (board[0][0] === board[0][1] && board[0][1] === board[0][2] && board[0][0] != '') {
             this.declareWinner(board[0][0]);
+            return true;
         } else if (board[1][0] === board[1][1] && board[1][1] === board[1][2] && board[1][0] != '') {
-            this.declareWinner(board[0][0]);
+            this.declareWinner(board[1][0]);
+            return true;
         } else if (board[2][0] === board[2][1] && board[2][1] === board[2][2] && board[2][0] != '') {
             this.declareWinner(board[2][0]);
+            return true;
             //check columns
         } else if (board[0][0] === board[1][0] && board[1][0] === board[2][0] && board[0][0] != '') {
             this.declareWinner(board[0][0]);
+            return true;
         } else if (board[0][1] === board[1][1] && board[1][1] === board[2][1] && board[0][1] != '') {
             this.declareWinner(board[0][1]);
+            return true;
         } else if (board[0][2] === board[1][2] && board[1][2] === board[2][2] && board[0][2] != '') {
             this.declareWinner(board[0][2]);
+            return true;
             //check crosses
         } else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] != '') {
             this.declareWinner(board[0][0]);
+            return true;
         } else if (board[2][0] === board[1][1] && board[1][1] === board[0][2] && board[0][2] != '') {
             this.declareWinner(board[0][2]);
+            return true;
         }
     },
     checkForDraw: function() {
         let count = 0;
+        let win = this.checkForWin();
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 if (this.board[i][j] === '') {
@@ -55,7 +64,7 @@ const gameBoard = {
                 }
             }
         }
-        if (count === 0) {
+        if (count === 0 && !win) {
             this.declareDraw();
         }
     },
